@@ -1,0 +1,33 @@
+test_evaluate<-function(){
+    alg1<-matrix(0,6,6)
+    alg1[1,2]<-0.7
+    alg1[1,3]<-0.69
+    alg1[1,6]<-0.65
+    alg1[2,3]<-0.63
+    alg1[3,6]<-0.6
+    alg1[1,5]<-0.55
+    alg1[3,5]<-0.53
+    alg1[4,5]<-0.5
+    alg1[2,4]<-0.4
+    alg1[4,6]<-0.32
+    alg1[5,6]<-0.3
+    gs<-matrix(0,6,6)
+    gs[6,5]<-1
+    gs[4,5]<-1
+    gs[2,5]<-1
+    gs[3,5]<-1
+    gs[1,4]<-1
+    gs[1,2]<-1
+    gs[3,2]<-1
+    res<-c(1,1,1,2,2,2,3,4,4,4,5,0,1,2,2,3,4,4,4,5,6,6,8,7,6,6,5,4,4,
+        4,3,2,2,6,6,6,5,5,5,4,3,3,3,2)
+    res<-matrix(res,11,4)
+    colnames(res)<-c("TP","FP","TN","FN")
+    checkEquals(res,evaluate(alg1,gs))
+    G<-pmax(gs,t(gs))
+    G<-1-G
+    diag(G)<-0
+    r<-evaluate(G,gs)
+    checkEquals(r[,1],rep(0,8))
+    checkEquals(r[,2],1:8)
+}

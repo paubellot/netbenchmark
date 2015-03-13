@@ -1,0 +1,7 @@
+- First version of the netbenchmark package
+    For a given list of network inference algorithms, \code{netbenchmark} 
+    performs a benchmark between them. It makes use of four different big gene 
+    datasources, it relies on a random subsampling of each one of the 
+    datasource and noise addition in order to generate the datasets. 
+    This package is licensed under a Creative Commons 
+    Attribution-NonCommercial-ShareAlike 3.0 Unported License.

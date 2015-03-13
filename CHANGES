@@ -1,0 +1,56 @@
+netbenchmark_0.97.1 
+      - Documentation files have been added
+netbenchmark_0.97.2
+      - dependencies have been removed
+      - added the possibility of specify the desired datasets
+      - added the possibility of specify the type of noise
+netbenchmark_0.97.3
+      - dependency to igraph added
+      - linking with Rcpp
+      - changed the evaluation script to evaluate edgelists
+      - added a function to convert weighted adjacency matrix to an edgelist (Adj2Edgelist.R)
+netbenchmark_0.98.0
+      - dependency to igraph removed
+      - Computation time of Adj2Edgelist.R reduced
+      - added a function to compute a friedman statistical test (StatisticalTest.R)
+netbenchmark_0.98.1
+      - State of the art wrappers included and therefore all the dependecies have been added
+      - Major changes in evaluate.cpp, now it returns the confusion matrix for each prediction
+      - Changes in comp.metr.R to calculate metrics with the confusion matrix
+      - Random network perfomance is simulated with Hypergeometric Distribution
+netbenchmark_0.98.2
+      - Statistical test changed 
+      - Fscore measure is deleted
+      - Measures based in first x predictions (x fixed by the user): precision and aupr_x
+netbenchmark_0.98.3
+      - Wrapper functions returns adjacency matrix
+netbenchmark_0.98.4
+      - Renaming of function to follow the standard naming 
+      - Simplification of the wrapper functions
+      - Inference algorithms and metanetworks methods are now specified via 
+        list of characters
+      - Evaluation of symetric matrices only 
+      - Added function to make undirected network from directed one
+netbenchmark_0.98.5
+      - Renaming of some parameters
+netbenchmark_0.98.6
+      - ALL and ALL.fast options
+netbenchmark_0.98.7
+      - Easier integration of new methods via functions=c(“ALL.fast”,”mymeth.wrap”)
+netbenchmark_0.98.8
+      - Spliting of the data and code in two packages
+      - New data package grndata_0.99.0
+netbenchmark_0.99.0
+      - First version to Bioconductor
+netbenchmark_0.99.1
+      - Using 'message' instead of 'cat'
+      - Robust loops with seq_len and seq_along
+      - Removing backticks of anonymous functions
+      - C++ namespace hygene
+      - Adding toy examples to allow check and vignette building
+netbenchmark_0.99.2
+      - Giving credit to the Genie3 author
+      - Adding minimum version of grndata
+      - Adding verbose option to reduce clutter in vignette output
+      - Use of R's garbage collector 
+      - Fix to 'message' use

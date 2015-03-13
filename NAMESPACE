@@ -1,0 +1,6 @@
+useDynLib(netbenchmark, .registration=TRUE)
+exportPattern("^[^\\.]")
+importFrom(Rcpp, evalCpp)
+importFrom(pracma, trapz)
+import(grndata)
+import(minet, randomForest, c3net, PCIT, GeneNet, tools)
