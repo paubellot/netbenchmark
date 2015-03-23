@@ -1,0 +1,12 @@
+citHeader("To cite netbenchmark in publications use:")
+
+bibentry(
+  bibtype = "unpublished",
+  author = c(
+    person("Pau","Bellot",email="pau.bellot@upc.edu"),
+    person("Catharina","Olsen"),person("Philippe","Salembier"),
+    person("Albert", "Oliveras-Verges"), person("Patrick", "Meyer","E")),
+  year = "2015",
+  title="NetBenchmark: A Bioconductor Package for Reproducible Benchmarks of Gene Regulatory Network Inference",
+  note    = "Submitted",
+)

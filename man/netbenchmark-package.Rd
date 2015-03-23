@@ -14,6 +14,12 @@ Pau Bellot, Catharina Olsen, Patrick E Meyer, with contributions from Alexandre 
 Maintainer: Pau Bellot <pau.bellot@upc.edu>
 }
 
+\references{
+Pau Bellot, Catharina Olsen, Philippe Salembier, Albert Oliveras-Verges, 
+and Patrick E Meyer. NetBenchmark: A Bioconductor Package for Reproducible
+Benchmarks of Gene Regulatory Network Inference. Submitted, 2015.
+}
+
 \keyword{ package }
  
 \examples{
