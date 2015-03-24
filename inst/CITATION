@@ -1,12 +1,13 @@
 citHeader("To cite netbenchmark in publications use:")
 
-bibentry(
-  bibtype = "unpublished",
-  author = c(
-    person("Pau","Bellot",email="pau.bellot@upc.edu"),
-    person("Catharina","Olsen"),person("Philippe","Salembier"),
-    person("Albert", "Oliveras-Verges"), person("Patrick", "Meyer","E")),
-  year = "2015",
-  title="NetBenchmark: A Bioconductor Package for Reproducible Benchmarks of Gene Regulatory Network Inference",
+citEntry(entry = "unpublished",
+  title        = "NetBenchmark: A Bioconductor Package for Reproducible Benchmarks of Gene Regulatory Network Inference",
+  author       = "Pau Bellot, Catharina Olsen, Philippe Salembier, Albert Oliveras-Verges and Patrick E. Meyer",
+  journal      = "BMC Bioinformatics",
+  year         = "2015",
   note    = "Submitted",
+  textVersion  =
+  paste("Pau Bellot, Catharina Olsen, Philippe Salembier, Albert Oliveras-Verges and Patrick E. Meyer (2015).",
+        "NetBenchmark: A Bioconductor Package for Reproducible Benchmarks of Gene Regulatory Network Inference.",
+        "Submitted.")
 )
