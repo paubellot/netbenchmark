@@ -26,7 +26,7 @@
     noise to be added at each of the subsampled datasets (default: 20) 
     - see \code{\link{datasource.subsample}}.}
     \item{global.noise}{Integer specifying the desired percentage of global 
-    noise to be added at each of the subsampled datasets (default: 20) 
+    noise to be added at each of the subsampled datasets (default: 0) 
     - see \code{\link{datasource.subsample}}.}
     \item{noiseType}{Character specifying the type of the noise to be added: 
     "normal" or "lognormal" (default: "normal") 
