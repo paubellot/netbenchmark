@@ -26,7 +26,7 @@
     noise to be added at each of the subsampled datasets (default: 20) 
     - see \code{\link{datasource.subsample}}.}
     \item{global.noise}{Integer specifying the desired percentage of global 
-    noise to be added at each of the subsampled datasets (default: 0) 
+    noise to be added at each of the subsampled datasets (default: 20) 
     - see \code{\link{datasource.subsample}}.}
     \item{noiseType}{Character specifying the type of the noise to be added: 
     "normal" or "lognormal" (default: "normal") 
@@ -83,6 +83,15 @@
         \item "all" performs network inference with "aracne", "c3net", "clr", 
         "GeneNet", "Genie3", "mutual ranking", "mrnet", "mrnetb", "pcit" 
 } 
+    The argument \code{datasources.names} accepts "all" or a selection of the 
+    following datasources \code{\link[grndata]{Availabledata}}:
+    \itemize{
+        \item "rogers1000"  
+        \item "syntren300" 
+        \item "syntren1000"  
+        \item "gnw1565"     
+        \item "gnw2000"
+    }
     All the measures only evaluates the first \code{no.topedges} \% of the 
     possible links inferred by each algorithm at each dataset.
     The statistical used is the Wilcoxon Rank Sum Test 
