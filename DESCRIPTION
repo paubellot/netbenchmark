@@ -17,6 +17,8 @@ Imports: Rcpp (>= 0.11.0), minet, randomForest, c3net, PCIT, GeneNet,
 LinkingTo: Rcpp
 Depends: grndata (>= 0.99.3)
 Suggests: RUnit, BiocGenerics, knitr
+LazyLoad: yes
+LazyData: yes
 biocViews: Microarray, GraphAndNetwork, Network, NetworkInference,
         GeneExpression
 VignetteBuilder: knitr
