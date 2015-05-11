@@ -12,13 +12,9 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
         set.seed(seed)
     }
     if(all("all.fast" %in% tolower(methods))) {
-        methods <- c("aracne.wrap","c3net.wrap","clr.wrap","GeneNet.wrap",
-            "mrnetb.wrap","mutrank.wrap","pcit.wrap","zscore.wrap",
-            methods[tolower(methods)!="all.fast"])
+        methods <- c(Fast,methods[tolower(methods)!="all.fast"])
     }else if(all("all" %in% tolower(methods))) {
-        methods <- c("aracne.wrap","c3net.wrap","clr.wrap","GeneNet.wrap",
-            "Genie3.wrap","mrnet.wrap","mutrank.wrap","mrnetb.wrap",
-            "pcit.wrap","zscore.wrap",methods[tolower(methods)!="all"])
+        methods <- c(All,methods[tolower(methods)!="all"])
     }
     if(length(datasources.names)==1){
         if (tolower(datasources.names)=="all"){

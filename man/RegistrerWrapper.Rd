@@ -7,6 +7,8 @@
 \description{
     This function allows the registration of a wrapper function to the
     all.fast or all methods of \code{\link{netbenchmark}}.
+    After registring it \code{wrapper.name} function will belong 
+    to all.fast or all methods during the R session. 
 }
 \usage{
     RegistrerWrapper(wrapper.name=NULL,all.fast=TRUE)
