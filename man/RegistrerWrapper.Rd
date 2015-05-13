@@ -27,13 +27,11 @@
     Pau Bellot, Catharina Olsen and Patrick E Meyer 
     Maintainer: Pau Bellot <pau.bellot@upc.edu>
 }
-\note{
-%%  ~~further notes~~
-}
 
 \seealso{
     \code{\link{netbenchmark}}
 }
+
 \examples{
     # Define a wrapper function
     Spearmancor <- function(data){

@@ -3,6 +3,7 @@ netbenchmark <- function(methods="all.fast",datasources.names="all",
     global.noise=0,noiseType="normal",sym=TRUE,plot=FALSE,seed=NULL,verbose=TRUE)
 {
     options(warn=1)
+    if(getRversion() >= "2.15.1")  utils::globalVariables(c("Fast", "All"))
     # set random number generator seed if seed is given
     if (!is.null(seed)) {
         set.seed(seed)

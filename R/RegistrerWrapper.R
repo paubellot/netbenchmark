@@ -1,4 +1,5 @@
 RegistrerWrapper<-function(wrapper.name=NULL,all.fast=TRUE){
+    if(getRversion() >= "2.15.1")  utils::globalVariables(c("Fast", "All"))
     tst<-paste("exists('",wrapper.name,"')",sep="")
     if(eval(parse(text=tst))){
         if(all.fast){
