@@ -9,32 +9,24 @@ using namespace Rcpp;
 NumericMatrix rate(CharacterMatrix PredEdgeList, CharacterMatrix GSEdgeList, int ngenes, int sym);
 RcppExport SEXP netbenchmark_rate(SEXP PredEdgeListSEXP, SEXP GSEdgeListSEXP, SEXP ngenesSEXP, SEXP symSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< CharacterMatrix >::type PredEdgeList(PredEdgeListSEXP );
-        Rcpp::traits::input_parameter< CharacterMatrix >::type GSEdgeList(GSEdgeListSEXP );
-        Rcpp::traits::input_parameter< int >::type ngenes(ngenesSEXP );
-        Rcpp::traits::input_parameter< int >::type sym(symSEXP );
-        NumericMatrix __result = rate(PredEdgeList, GSEdgeList, ngenes, sym);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< CharacterMatrix >::type PredEdgeList(PredEdgeListSEXP);
+    Rcpp::traits::input_parameter< CharacterMatrix >::type GSEdgeList(GSEdgeListSEXP);
+    Rcpp::traits::input_parameter< int >::type ngenes(ngenesSEXP);
+    Rcpp::traits::input_parameter< int >::type sym(symSEXP);
+    __result = Rcpp::wrap(rate(PredEdgeList, GSEdgeList, ngenes, sym));
+    return __result;
 END_RCPP
 }
 // zsc
 NumericMatrix zsc(NumericMatrix x);
 RcppExport SEXP netbenchmark_zsc(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP );
-        NumericMatrix __result = zsc(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    __result = Rcpp::wrap(zsc(x));
+    return __result;
 END_RCPP
 }

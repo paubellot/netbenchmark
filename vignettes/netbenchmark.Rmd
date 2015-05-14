@@ -11,8 +11,8 @@ vignette: >
 
 In the last decade, several methods have tackled the challenge of 
 reconstructing gene regulatory networks from gene expression data. 
-Several papers have compared and evaluated the different network inference 
-methods relying on simulated data.
+Several papers have compared and evaluated the different network 
+inference methods relying on simulated data.
 
 This is a new comparison that assesses different methods in a 
 high-heterogeneity data scenario which could reveal the specialization 

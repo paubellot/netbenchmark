@@ -1,15 +1,13 @@
 RegistrerWrapper<-function(wrapper.name=NULL,all.fast=TRUE){
-    if(getRversion() >= "2.15.1")  utils::globalVariables(c("Fast", "All"))
     tst<-paste("exists('",wrapper.name,"')",sep="")
     if(eval(parse(text=tst))){
         if(all.fast){
-            aux<-c(Fast,wrapper.name)
-            assign("Fast",aux, envir=.GlobalEnv)
+            Fast<-get("Fast", ntb_globals)
+            assign("Fast", c(Fast,wrapper.name),  ntb_globals)
             message(paste(wrapper.name, "added to all.fast methods"))
-            
         }else{
-            aux<-c(All,wrapper.name)
-            assign("All",aux, envir=.GlobalEnv)
+            All<-get("All",ntb_globals)
+            assign("All",c(All,wrapper.name),  ntb_globals)
             message(paste(wrapper.name, "added to all methods"))
         }
     }else{

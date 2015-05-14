@@ -3,7 +3,8 @@ netbenchmark <- function(methods="all.fast",datasources.names="all",
     global.noise=0,noiseType="normal",sym=TRUE,plot=FALSE,seed=NULL,verbose=TRUE)
 {
     options(warn=1)
-    if(getRversion() >= "2.15.1")  utils::globalVariables(c("Fast", "All"))
+    Fast <- get("Fast", ntb_globals)
+    All <- get("All",ntb_globals)
     # set random number generator seed if seed is given
     if (!is.null(seed)) {
         set.seed(seed)
@@ -26,7 +27,9 @@ netbenchmark <- function(methods="all.fast",datasources.names="all",
             }
         }
     }
-    Availabledata <- eval(parse(text="Availabledata"))
+    Availabledata <- get("Availabledata",
+                         envir=as.environment("package:grndata"))
+    #Availabledata <- eval(parse(text="Availabledata"))
     if(!all(datasources.names %in% Availabledata)){
         stop("The specified datasources are not available")
     }

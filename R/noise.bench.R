@@ -4,7 +4,8 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
     sym=TRUE,seed=NULL)
 {
     options(warn=1)
-    if(getRversion() >= "2.15.1")  utils::globalVariables(c("Fast", "All"))
+    Fast <- get("Fast", ntb_globals)
+    All <- get("All",ntb_globals)
     # set random number generator seed if seed is given
     if (!is.null(seed)){
         set.seed(seed)
