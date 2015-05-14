@@ -37,9 +37,11 @@
     Spearmancor <- function(data){
         cor(data,method="spearman")
     }
-    # Register it to all.fast methods
-    RegistrerWrapper("Spearmancor")
-    # Register it to all methods
-    RegistrerWrapper("Spearmancor", all.fast=FALSE)
+    \dontrun{
+        # Register it to all.fast methods
+        RegistrerWrapper("Spearmancor")
+        # Register it to all methods
+        RegistrerWrapper("Spearmancor", all.fast=FALSE)
+    }
 }
 \keyword{misc}
