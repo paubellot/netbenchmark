@@ -38,7 +38,7 @@
     useful for creating simulations that can be reproduced 
     (default: \code{NULL}) - see \code{\link[base]{set.seed}}.}
     \item{verbose}{Logical specifying if the code should provide a log 
-    about what the function is doing}
+    about what the function is doing (defaul: TRUE).}
     
 }
 
@@ -78,11 +78,13 @@
     The argument \code{methods} accepts "all.fast" and "all" 
     (case insensitive) as a parameters:
     \itemize{
-        \item "all.fast" performs network inference with "aracne", "c3net", 
-        "clr", "GeneNet", "mutual ranking", "mrnet", "pcit"
+       \item "all.fast" performs network inference with "aracne", "c3net", 
+        "clr", "GeneNet", "mutual ranking", "mrnet", "pcit" (and registered
+        methods with \code{\link{RegisterWrapper}}.)
         \item "all" performs network inference with "aracne", "c3net", "clr", 
-        "GeneNet", "Genie3", "mutual ranking", "mrnet", "mrnetb", "pcit" 
-} 
+        "GeneNet", "Genie3", "mutual ranking", "mrnet", "mrnetb", "pcit" (and 
+        registered methods with \code{\link{RegisterWrapper}}.)
+    } 
     The argument \code{datasources.names} accepts "all" or a selection of the 
     following datasources \code{\link[grndata]{Availabledata}}:
     \itemize{

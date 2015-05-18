@@ -1,6 +1,6 @@
-\name{RegistrerWrapper}
-\alias{RegistrerWrapper}
-\alias{UnregistrerWrapper}
+\name{RegisterWrapper}
+\alias{RegisterWrapper}
+\alias{UnregisterWrapper}
 \title{
     Wrapper (un)registration routine
 }
@@ -13,8 +13,8 @@
     all.fast or all methods during the R session.
 }
 \usage{
-    RegistrerWrapper(wrapper.name=NULL,all.fast=TRUE)
-    UnregistrerWrapper(wrapper.name=NULL,all.fast=TRUE)
+    RegisterWrapper(wrapper.name=NULL,all.fast=TRUE)
+    UnregisterWrapper(wrapper.name=NULL,all.fast=TRUE)
 }
 \arguments{
   \item{wrapper.name}{The character (vector) of wrapper names 
@@ -43,13 +43,13 @@
     }
     \dontrun{
         # Register it to all.fast methods
-        RegistrerWrapper("Spearmancor")
+        RegisterWrapper("Spearmancor")
         # Register it to all methods
-        RegistrerWrapper("Spearmancor", all.fast=FALSE)
+        RegisterWrapper("Spearmancor", all.fast=FALSE)
         # Unregister it from all.fast methods
-        UnregistrerWrapper("Spearmancor")
+        UnregisterWrapper("Spearmancor")
         # Unregister it from all methods
-        UnregistrerWrapper("Spearmancor", all.fast=FALSE)
+        UnregisterWrapper("Spearmancor", all.fast=FALSE)
     }
     
 }

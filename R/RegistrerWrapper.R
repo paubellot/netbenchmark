@@ -1,4 +1,4 @@
-RegistrerWrapper<-function(wrapper.name=NULL,all.fast=TRUE){
+RegisterWrapper<-function(wrapper.name=NULL,all.fast=TRUE){
     tst<-paste("exists('",wrapper.name,"')",sep="")
     if(eval(parse(text=tst))){
         if(all.fast){
@@ -19,7 +19,7 @@ RegistrerWrapper<-function(wrapper.name=NULL,all.fast=TRUE){
     }
 }
 
-UnregistrerWrapper<-function(wrapper.name=NULL,all.fast=TRUE){
+UnregisterWrapper<-function(wrapper.name=NULL,all.fast=TRUE){
     if(all.fast){
         Fast <- get("Fast", ntb_globals)
         idx <- which(wrapper.name==Fast)
