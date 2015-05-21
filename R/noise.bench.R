@@ -50,10 +50,9 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
     if (!all(datasources.names %in% Availabledata)) stop("unknown datasource")
     for(n in seq_len(ndata)){
         message(paste("Datasource:",datasources.names[n],"\n"))
-        datasource <- eval(parse(text=paste(datasources.names[n],
-            ".data",sep="")))
-        true.net <- eval(parse(text=paste(datasources.names[n],".net",
-            sep="")))
+        aux <- grndata::getData(datasources.names[n])
+        datasource <- aux[[1]]
+        true.net <- aux[[2]]
         s <- dim(datasource)
         ngenes <- s[2] #number of genes in the network
         npos <- sum(true.net) #number of true links in the network

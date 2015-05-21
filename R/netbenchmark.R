@@ -1,6 +1,6 @@
 netbenchmark <- function(methods="all.fast",datasources.names="all",
-    experiments=150,eval="AUPR",no.topedges=20,datasets.num=5,local.noise=20,
-    global.noise=0,noiseType="normal",sym=TRUE,plot=FALSE,seed=NULL,verbose=TRUE)
+                         experiments=150,eval="AUPR",no.topedges=20,datasets.num=5,local.noise=20,
+                         global.noise=0,noiseType="normal",sym=TRUE,plot=FALSE,seed=NULL,verbose=TRUE)
 {
     options(warn=1)
     Fast <- get("Fast", ntb_globals)
@@ -20,7 +20,7 @@ netbenchmark <- function(methods="all.fast",datasources.names="all",
     if(length(datasources.names)==1){
         if (tolower(datasources.names)=="all"){
             datasources.names <- c("rogers1000","syntren1000","syntren300",
-                "gnw1565","gnw2000")
+                                   "gnw1565","gnw2000")
         }else{
             if(tolower(datasources.names)=="toy"){
                 datasources.names <- "toy"
@@ -39,13 +39,11 @@ netbenchmark <- function(methods="all.fast",datasources.names="all",
     if(!is.na(experiments)){
         for(n in seq_len(ndata)){
             #loading the whole datasource
-            datasource <- eval(parse(text=paste(datasources.names[n],
-            ".data",sep=""))) 
+            datasource <- grndata::getData(datasources.names[n],getNet=FALSE)
             if(experiments*datasets.num>dim(datasource)[1]){
                 warning(paste("The specified number of experiments and 
-                    datasets is bigger than the orginal number of experiments 
-                    in the datasource: ",datasources.names[n],", 
-                    sampling with replacement will be used",sep=""))
+datasets is bigger than the orginal number of experiments in the datasource: 
+",datasources.names[n],", sampling with replacement will be used",sep=""))
             } 
         }
     }
@@ -68,10 +66,9 @@ netbenchmark <- function(methods="all.fast",datasources.names="all",
         if(verbose){
             message(paste("datasource:",datasources.names[n]))
         }
-        datasource <- eval(parse(text=paste(datasources.names[n],
-            ".data",sep="")))
-        true.net <- eval(parse(text=paste(datasources.names[n],".net",
-            sep="")))
+        aux <- grndata::getData(datasources.names[n])
+        datasource <- aux[[1]]
+        true.net <- aux[[2]]
         #loading the specified datasource
         ngenes <- dim(datasource)[2]
         npos <- sum(true.net) #number of true links in the network
@@ -84,13 +81,13 @@ netbenchmark <- function(methods="all.fast",datasources.names="all",
         l.seed <- eval(parse(text=paste("seeds$",datasources.names[n])))
         set.seed(l.seed)
         data.list <- datasource.subsample(datasource,
-            datasets.num=datasets.num,experiments=experiments,
-            local.noise=local.noise,global.noise=global.noise,
-            noiseType=noiseType)
+                                          datasets.num=datasets.num,experiments=experiments,
+                                          local.noise=local.noise,global.noise=global.noise,
+                                          noiseType=noiseType)
         nlinks.table[(1:datasets.num)+(n-1)*datasets.num,] <- matrix(no.edges,
-            datasets.num,nmeths+1)
+                                                                     datasets.num,nmeths+1)
         npos.table[(1:datasets.num)+(n-1)*datasets.num,] <- matrix(npos,
-            datasets.num,nmeths+1)
+                                                                   datasets.num,nmeths+1)
         tp.mat <- matrix(0,no.edges,nmeths+1)
         for(i in seq_along(data.list)){
             tp.local.mat <- matrix(0,no.edges,nmeths+1)
@@ -165,7 +162,7 @@ netbenchmark <- function(methods="all.fast",datasources.names="all",
         m.pr <- .get.pr(tp.mat/datasets.num,npos)
         if(plot){
             .get.pr.plot(m.pr,type="l",datasource.name=datasources.names[n],
-                lwd=2.5)
+                         lwd=2.5)
         }
         plots[[n]] <- m.pr
     }
@@ -180,6 +177,6 @@ netbenchmark <- function(methods="all.fast",datasources.names="all",
     rownames(mean.table) <- m
     L <- list(results.table,pval.table,mean.table,time.table,plots,seed)
     names(L) <- c(paste(eval,"top",as.character(no.topedges),"%",sep=""),
-        "pval","summary","CpuTime","PRcurves","seed")
+                  "pval","summary","CpuTime","PRcurves","seed")
     return(L)
 }

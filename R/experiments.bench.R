@@ -41,10 +41,9 @@ experiments.bench <- function(methods="all.fast",datasources.names="all",
     rown <- character()
     for(n in seq_len(ndata)){
         message(paste("Dataset:",datasources.names[n],"\n"))
-        dataset <- eval(parse(text=paste(datasources.names[n],".data",
-            sep="")))
-        true.net <- eval(parse(text=paste(datasources.names[n],".net",
-            sep="")))
+        aux <- grndata::getData(datasources.names[n])
+        datasource <- aux[[1]]
+        true.net <- aux[[2]]
         npos <- sum(true.net)
         ngenes <- dim(dataset)[2] #number of genes in the network
         nlinks <- ngenes^2-ngenes #number of posible links in the network
