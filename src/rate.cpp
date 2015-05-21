@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h> 
 #include <cstdlib>
+#include <limits>
 #include <vector>       // std::vector
 
 using namespace Rcpp;
@@ -30,11 +31,18 @@ using namespace Rcpp;
 * ------------------------------------------------------------------------
 */
 
+void printvec(std::vector<double> vec){
+    for(int i=0;i<vec.size();i++){
+        std::cout<<i<<" "<< vec[i]<<std::endl;
+    }
+}
+
 // [[Rcpp::export]]
 NumericMatrix rate(CharacterMatrix PredEdgeList,CharacterMatrix GSEdgeList,
     int ngenes,int sym)
 {
-    int TP=0, npos, nl=0,FP=0,FN,TN;
+    int  npos, nl=0;
+    double  TP=0,FP=0,FN,TN;
     npos = GSEdgeList.nrow();
     int N=((ngenes*ngenes)-ngenes)/sym-npos;
     std::pair <std::string,std::string> auxPair;
@@ -48,18 +56,49 @@ NumericMatrix rate(CharacterMatrix PredEdgeList,CharacterMatrix GSEdgeList,
         GSset.insert(auxPair); 
     }
     nl=PredEdgeList.nrow();
-    std::vector<int> P(nl,0);
+    std::vector<double> P(nl,0);
+    int j,k;
+    bool aux;
     for(int i=0;i<nl;i++){
-        s1=PredEdgeList(i,0);
-        s2=PredEdgeList(i,1);
-        auxPair=std::make_pair(s1,s2);
-        it=GSset.find(auxPair);
-        if(it!=GSset.end()){
-            P[i]=1;
+        std::cout<<"eval "<<i<<std::endl;
+        for(j=1;j+i<nl;j++){
+            if(PredEdgeList(i+j,2)!=PredEdgeList(i,2)){
+                break;
+            }
+        }
+        if(j!=1){
+            std::cout<<"= val from "<<i<<" to "<< i+(j-1)<<std::endl;
+            std::cout<<"# = el "<< j<<std::endl;
+            double mP=0;
+            for(k=0;k<j;k++){
+                s1=PredEdgeList(i+k,0);
+                s2=PredEdgeList(i+k,1);
+                auxPair=std::make_pair(s1,s2);
+                it=GSset.find(auxPair);
+                if(it!=GSset.end()){
+                   mP=mP+1;
+                }
+            }
+            std::cout<<"mP "<< mP<<std::endl;
+            mP=mP/j;
+            for(k=0;k<j;k++){
+                P[i+k]=mP;
+            }
+            i=i+j-1;
+            std::cout<<"seting i to "<< i<<std::endl;
         }else{
-            P[i]=0;
+            s1=PredEdgeList(i,0);
+            s2=PredEdgeList(i,1);
+            auxPair=std::make_pair(s1,s2);
+            it=GSset.find(auxPair);
+            if(it!=GSset.end()){
+                P[i]=1;
+            }else{
+                P[i]=0;
+            }
         }
     }
+    printvec(P); 
     NumericMatrix results(nl,4); // matrix with TP,FP,TN,FN
     for(int i=0;i<nl;i++){
         TP=TP+P[i];
