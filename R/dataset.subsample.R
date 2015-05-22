@@ -1,8 +1,9 @@
 datasource.subsample <- function(datasource,experiments=NA,datasets.num=5,
-    local.noise=20,global.noise=0,noiseType="normal",samplevar=TRUE,seed=NULL)
+                                 local.noise=20,global.noise=0,
+                                 noiseType="normal",samplevar=TRUE,seed=NULL)
 {
     if(!is.null(seed)){
-      set.seed(seed)
+        set.seed(seed)
     }
     #sampledata
     s <- dim(datasource) # obs x variables
@@ -19,7 +20,7 @@ datasource.subsample <- function(datasource,experiments=NA,datasets.num=5,
     data.list <- vector('list',datasets.num)
     if(samplevar){
         smps <- round(runif(datasets.num,round(experiments*0.8),
-            round(experiments*1.2)))
+                            round(experiments*1.2)))
     }else{
         smps <- rep(experiments,datasets.num)
     }
@@ -39,20 +40,43 @@ datasource.subsample <- function(datasource,experiments=NA,datasets.num=5,
         idxs <- idxs[-(1:smps[n])]
         rdata <- datasource[idx,]
         sds <- apply(rdata, 2, sd)
-        if (local.noise!=0){
-            noise.l <- runif(1,local.noise*0.8,local.noise*1.2)
+        if(length(local.noise)==1){
+            if (local.noise!=0){
+                noise.l <- runif(1,local.noise*0.8,local.noise*1.2)
+                rdata <- apply(rdata,2,.addnoise,noise=noise.l,
+                               noiseType=noiseType[1])
+            }
+        }else{
+            noise.l <- runif(1,local.noise[1],local.noise[2])
             rdata <- apply(rdata,2,.addnoise,noise=noise.l,
-                noiseType=noiseType[1])
+                           noiseType=noiseType[1])
         }
-        if (global.noise!=0){
-            noise.l <- runif(1,global.noise*0.8,global.noise*1.2)
+        if(length(global.noise)==1){
+            if (global.noise!=0){
+                noise.l <- runif(1,global.noise*0.8,global.noise*1.2)
+                if(noiseType[2]=="normal"){
+                    Gnoise <- matrix(rnorm(dim(rdata)[1]*s[2],mean=0,
+                                           sd=mean(sds)*noise.l/100), 
+                                     dim(rdata)[1], s[2])
+                }
+                if(noiseType[2]=="lognormal"){
+                    Gnoise <- matrix(rlnorm(dim(rdata)[1]*s[2],meanlog=0,
+                                            sdlog=mean(sds)*noise.l/100), 
+                                     dim(rdata)[1], s[2])
+                }
+                rdata <- rdata+Gnoise
+            }
+        }else{
+            noise.l <- runif(1,global.noise[1],global.noise[2])
             if(noiseType[2]=="normal"){
                 Gnoise <- matrix(rnorm(dim(rdata)[1]*s[2],mean=0,
-                    sd=mean(sds)*noise.l/100), dim(rdata)[1], s[2])
+                                       sd=mean(sds)*noise.l/100), 
+                                 dim(rdata)[1], s[2])
             }
             if(noiseType[2]=="lognormal"){
                 Gnoise <- matrix(rlnorm(dim(rdata)[1]*s[2],meanlog=0,
-                    sdlog=mean(sds)*noise.l/100), dim(rdata)[1], s[2])
+                                        sdlog=mean(sds)*noise.l/100), 
+                                 dim(rdata)[1], s[2])
             }
             rdata <- rdata+Gnoise
         }

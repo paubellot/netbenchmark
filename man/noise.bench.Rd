@@ -12,10 +12,10 @@
 }
 \usage{
     noise.bench(methods = "all.fast", datasources.names = "all",
-        experiments = 150, eval = "AUPR", no.topedges = 20,
+        eval = "AUPR", no.topedges = 20,
         datasets.num = 3, local.noise = seq(0, 100, len = 3),
         global.noise = 0, noiseType = "normal", sym = TRUE,
-        seed = NULL)
+        seed = NULL, verbose = TRUE)
 }
 \arguments{
     \item{methods}{A vector of characters containing the names of network 
@@ -27,9 +27,6 @@
     - see \code{\link{evaluate}}.}
     \item{datasets.num}{Number of repetitions in the noise evaluation, for 
     each method and each dataset and each noise intensity (default: 5).}
-    \item{experiments}{Integer specifying the number of experiments to 
-    generate the subsampled datasets (default: 150) 
-    - see \code{\link{datasource.subsample}}.}
     \item{no.topedges}{Float specifying the percentage  number of links to be 
     considered in the evaluation (default: 20).}
     \item{local.noise}{Vector specifying the desired percentage of local 
@@ -44,6 +41,8 @@
     \item{seed}{A single value, interpreted as an integer to specify seeds,
     useful for creating simulations that can be reproduced 
     (default: \code{NULL}) - see \code{\link[base]{set.seed}}.}
+    \item{verbose}{Logical specifying if the code should provide a log about
+    what the function is doing (default: TRUE).}
 }
 \details{
     The argument \code{methods} accepts "all.fast" and "all" 
@@ -80,6 +79,6 @@
 \seealso{ \code{\link{netbenchmark}}, \code{\link{experiments.bench}}}
 \examples{
     results <- noise.bench(datasources.names="toy",
-    datasets.num=2,methods="all.fast",experiments=40)
+    datasets.num=2,methods="all.fast")
 }
 \keyword{ misc }

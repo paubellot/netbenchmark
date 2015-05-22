@@ -1,6 +1,8 @@
 netbenchmark <- function(methods="all.fast",datasources.names="all",
-                         experiments=150,eval="AUPR",no.topedges=20,datasets.num=5,local.noise=20,
-                         global.noise=0,noiseType="normal",sym=TRUE,plot=FALSE,seed=NULL,verbose=TRUE)
+                         experiments=150,eval="AUPR",no.topedges=20,
+                         datasets.num=5,local.noise=20,
+                         global.noise=0,noiseType="normal",sym=TRUE,
+                         plot=FALSE,seed=NULL,verbose=TRUE)
 {
     options(warn=1)
     Fast <- get("Fast", ntb_globals)
@@ -50,8 +52,8 @@ datasets is bigger than the orginal number of experiments in the datasource:
     nnets <- datasets.num*ndata
     nmeths <- length(methods)
     results.table <-  as.data.frame(matrix(0,nrow=nnets,ncol=nmeths+3))
-    nlinks.table <- matrix(0,nrow=nnets,ncol=nmeths+1)
-    npos.table <- matrix(0,nrow=nnets,ncol=nmeths+1)
+    #nlinks.table <- matrix(0,nrow=nnets,ncol=nmeths+1)
+    #npos.table <- matrix(0,nrow=nnets,ncol=nmeths+1)
     pval.table <-  as.data.frame(matrix(0,nrow=ndata,ncol=nmeths+2))
     time.table <-  as.data.frame(matrix(0,nrow=nnets,ncol=nmeths+2))
     names <- as.character(methods)
@@ -81,13 +83,15 @@ datasets is bigger than the orginal number of experiments in the datasource:
         l.seed <- eval(parse(text=paste("seeds$",datasources.names[n])))
         set.seed(l.seed)
         data.list <- datasource.subsample(datasource,
-                                          datasets.num=datasets.num,experiments=experiments,
-                                          local.noise=local.noise,global.noise=global.noise,
+                                          datasets.num=datasets.num,
+                                          experiments=experiments,
+                                          local.noise=local.noise,
+                                          global.noise=global.noise,
                                           noiseType=noiseType)
-        nlinks.table[(1:datasets.num)+(n-1)*datasets.num,] <- matrix(no.edges,
-                                                                     datasets.num,nmeths+1)
-        npos.table[(1:datasets.num)+(n-1)*datasets.num,] <- matrix(npos,
-                                                                   datasets.num,nmeths+1)
+       # nlinks.table[(1:datasets.num)+(n-1)*datasets.num,] <- matrix(no.edges,
+        #                                                             datasets.num,nmeths+1)
+       # npos.table[(1:datasets.num)+(n-1)*datasets.num,] <- matrix(npos,
+    #                                                               datasets.num,nmeths+1)
         tp.mat <- matrix(0,no.edges,nmeths+1)
         for(i in seq_along(data.list)){
             tp.local.mat <- matrix(0,no.edges,nmeths+1)
@@ -170,10 +174,15 @@ datasets is bigger than the orginal number of experiments in the datasource:
     pval.table[,1] <- datasources.names
     time.table[,1:2] <- results.table[,1:2]
     aux.table <- results.table[,3:(nmeths+3)]
-    mean.table <- results.table[1:2,3:(nmeths+3)]
-    mean.table[1,] <- apply(aux.table/nlinks.table,2,mean)
-    mean.table[2,] <- apply(aux.table/nlinks.table,2,sd)
-    m <- c("Mean","Standard Deviation")
+    mean.table <- results.table[seq_len(2*ndata),3:(nmeths+3)]
+    m <- c()
+    for(i in seq_len(ndata)){
+        idx <- which(results.table[,1]==datasources.names[i])
+        mean.table[i*2-1,] <- apply(aux.table[idx,],2,mean)
+        mean.table[i*2,] <- apply(aux.table[idx,],2,sd)
+        m <- c(m,paste("Mean",datasources.names[i]),
+               paste("Standard Deviation",datasources.names[i]))
+    }
     rownames(mean.table) <- m
     L <- list(results.table,pval.table,mean.table,time.table,plots,seed)
     names(L) <- c(paste(eval,"top",as.character(no.topedges),"%",sep=""),

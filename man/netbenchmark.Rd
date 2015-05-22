@@ -38,7 +38,7 @@
     useful for creating simulations that can be reproduced 
     (default: \code{NULL}) - see \code{\link[base]{set.seed}}.}
     \item{verbose}{Logical specifying if the code should provide a log 
-    about what the function is doing (defaul: TRUE).}
+    about what the function is doing (default: TRUE).}
     
 }
 

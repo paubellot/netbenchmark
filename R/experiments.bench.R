@@ -1,6 +1,7 @@
 experiments.bench <- function(methods="all.fast",datasources.names="all",
     experiments=c(20,50,150),eval="AUPR",no.topedges=20,datasets.num=3,
-    local.noise=20,global.noise=0,noiseType="normal",sym=TRUE,seed=NULL)
+    local.noise=20,global.noise=0,noiseType="normal",sym=TRUE,seed=NULL,
+    verbose=TRUE)
 {
     options(warn=1)
     Fast <- get("Fast", ntb_globals)
@@ -40,7 +41,9 @@ experiments.bench <- function(methods="all.fast",datasources.names="all",
     pval <- as.data.frame(matrix(0,points*ndata,nmeths+3))
     rown <- character()
     for(n in seq_len(ndata)){
-        message(paste("Dataset:",datasources.names[n],"\n"))
+        if(verbose){
+            message(paste("Dataset:",datasources.names[n]))
+        }
         aux <- grndata::getData(datasources.names[n])
         datasource <- aux[[1]]
         true.net <- aux[[2]]
@@ -64,7 +67,9 @@ experiments.bench <- function(methods="all.fast",datasources.names="all",
                 global.noise =global.noise,noiseType=noiseType,
                 samplevar=FALSE)
             for(j in seq_len(nmeths)){
-                message(paste(methods[j],"\n"))
+                if(verbose){
+                    message(methods[j])
+                }
                 for(k in seq_len(datasets.num)){
                     net <- do.call(methods[j],list(rdata[[k]]))
                     r <- evaluate(net,true.net,extend=no.edges,sym=sym)
@@ -110,7 +115,7 @@ experiments.bench <- function(methods="all.fast",datasources.names="all",
                 m[i,nmeths+1]=auroc(r,no.edges)
             }
             aux <- wilcox.test(precision[,nmeths+1],precision[,M])
-            pval.table[i,nmeths+1]=aux[[3]]
+            pval.table[i,nmeths+1] <- aux[[3]]
         }
         rown <- c(rown,rep(datasources.names[n],points))
         results[(1:points)+(n-1)*points,1] <- rep(datasources.names[n],

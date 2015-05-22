@@ -16,7 +16,7 @@
         experiments = c(20, 50, 150), eval = "AUPR",
         no.topedges = 20, datasets.num = 3, local.noise = 20,
         global.noise = 0, noiseType = "normal", sym = TRUE,
-        seed = NULL)
+        seed = NULL, verbose= TRUE)
 }
 \arguments{
     \item{methods}{A vector of characters containing the names of network 
@@ -46,6 +46,8 @@
     \item{seed}{A single value, interpreted as an integer to specify seeds, 
     useful for creating simulations that can be reproduced 
     (default: \code{NULL}) - see \code{\link[base]{set.seed}}.}
+    \item{verbose}{Logical specifying if the code should provide a log 
+    about what the function is doing (default: TRUE).}
 }
 \details{
     The argument \code{methods} accepts "all.fast" and "all" 

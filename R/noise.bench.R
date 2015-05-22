@@ -1,7 +1,7 @@
 noise.bench <- function(methods="all.fast",datasources.names="all",
-    experiments=150,eval="AUPR",no.topedges=20,datasets.num=3,
+    eval="AUPR",no.topedges=20,datasets.num=3,
     local.noise=seq(0,100,len=3),global.noise=0,noiseType="normal",
-    sym=TRUE,seed=NULL)
+    sym=TRUE,seed=NULL,verbose=TRUE)
 {
     options(warn=1)
     Fast <- get("Fast", ntb_globals)
@@ -49,7 +49,9 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
     rown <- character()
     if (!all(datasources.names %in% Availabledata)) stop("unknown datasource")
     for(n in seq_len(ndata)){
-        message(paste("Datasource:",datasources.names[n],"\n"))
+        if(verbose){
+            message(paste("Datasource:",datasources.names[n]))
+        }
         aux <- grndata::getData(datasources.names[n])
         datasource <- aux[[1]]
         true.net <- aux[[2]]
@@ -67,20 +69,18 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
         colnames(tp.local.mat) <- c(methods,"rand")
         l.seed <- eval(parse(text=paste("seeds$",datasources.names[n])))
         set.seed(l.seed)
-        spd <- datasource.subsample(datasource,experiments=experiments,
-            datasets.num = datasets.num,local.noise = 0,global.noise = 0)
         for(i in seq_len(points)){
             m.local <- matrix(0,datasets.num,nmeths+1)
             rdata <- vector('list',datasets.num)
             for(k in seq_len(datasets.num)){
                 if(local.noise[i]!=0){
-                    rdata[[k]] <- apply(spd[[k]],2,.cont,
+                    rdata[[k]] <- apply(datasource,2,.cont,
                         noise=local.noise[i],noiseType=noiseType)
                 }else{
-                    rdata[[k]] <- spd[[k]]
+                    rdata[[k]] <- datasource
                 }
                 if(global.noise[i]!=0){
-                    sds <- apply(spd[[k]], 2, sd)
+                    sds <- apply(datasource, 2, sd)
                     if(noiseType=="normal"){
                         Gnoise <- matrix(rnorm(s[1]*s[2],mean=0,
                             sd=mean(sds)*global.noise[i]/100), s[1], s[2])
@@ -93,7 +93,9 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
                 }
             }
             for(j in seq_len(nmeths)){
-                message(paste(methods[j],"\n"))
+                if(verbose){
+                    message(methods[j])
+                }
                 for(k in seq_len(datasets.num)){
                     net <- do.call(methods[j],list(rdata[[k]]))
                     r <- evaluate(net,true.net,extend=no.edges,sym=sym)

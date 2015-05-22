@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <string.h> 
 #include <cstdlib>
-#include <limits>
 #include <vector>       // std::vector
 
 using namespace Rcpp;
@@ -30,12 +29,6 @@ using namespace Rcpp;
 *       GS: Golden Standard [ TF(string) TG(string) Weight(float)]
 * ------------------------------------------------------------------------
 */
-
-void printvec(std::vector<double> vec){
-    for(int i=0;i<vec.size();i++){
-        std::cout<<i<<" "<< vec[i]<<std::endl;
-    }
-}
 
 // [[Rcpp::export]]
 NumericMatrix rate(CharacterMatrix PredEdgeList,CharacterMatrix GSEdgeList,
@@ -58,17 +51,13 @@ NumericMatrix rate(CharacterMatrix PredEdgeList,CharacterMatrix GSEdgeList,
     nl=PredEdgeList.nrow();
     std::vector<double> P(nl,0);
     int j,k;
-    bool aux;
     for(int i=0;i<nl;i++){
-        std::cout<<"eval "<<i<<std::endl;
         for(j=1;j+i<nl;j++){
             if(PredEdgeList(i+j,2)!=PredEdgeList(i,2)){
                 break;
             }
         }
         if(j!=1){
-            std::cout<<"= val from "<<i<<" to "<< i+(j-1)<<std::endl;
-            std::cout<<"# = el "<< j<<std::endl;
             double mP=0;
             for(k=0;k<j;k++){
                 s1=PredEdgeList(i+k,0);
@@ -79,13 +68,11 @@ NumericMatrix rate(CharacterMatrix PredEdgeList,CharacterMatrix GSEdgeList,
                    mP=mP+1;
                 }
             }
-            std::cout<<"mP "<< mP<<std::endl;
             mP=mP/j;
             for(k=0;k<j;k++){
                 P[i+k]=mP;
             }
             i=i+j-1;
-            std::cout<<"seting i to "<< i<<std::endl;
         }else{
             s1=PredEdgeList(i,0);
             s2=PredEdgeList(i,1);
@@ -98,7 +85,6 @@ NumericMatrix rate(CharacterMatrix PredEdgeList,CharacterMatrix GSEdgeList,
             }
         }
     }
-    printvec(P); 
     NumericMatrix results(nl,4); // matrix with TP,FP,TN,FN
     for(int i=0;i<nl;i++){
         TP=TP+P[i];

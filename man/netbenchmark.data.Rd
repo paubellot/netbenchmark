@@ -28,7 +28,7 @@ considered in the evaluation (default: 20)}
 \item{plot}{(default: FALSE)}
 
 \item{verbose}{Logical specifying if the code should provide a log about
-what the function is doing (defaul: TRUE).}
+what the function is doing (default: TRUE).}
 }
 \description{
 Benchmarking of several network inference algorithms for your own data

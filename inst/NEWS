@@ -15,4 +15,11 @@ netbenchmark_1.1.3
     - Adding routine to easily unregister wrapper functions
 netbenchmark_1.1.4
     - Adding function to run inference methods to user defined expression data 
-    and its corresponding true regulatory network
+    and its corresponding true regulatory network with \code{netbenchmark.data} 
+netbenchmark_1.1.5
+    - Better handling of ties between predictions in evaluation
+    - It is possible to specify the ranges of local.noise and global.noise
+    - Bug fix in experiments.bench.R, using the whole datasource
+    - Better summary table in netbenchmark.R
+    - Adding verbose obtion to all the benchmarks
+
