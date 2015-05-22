@@ -48,7 +48,7 @@ experiments.bench <- function(methods="all.fast",datasources.names="all",
         datasource <- aux[[1]]
         true.net <- aux[[2]]
         npos <- sum(true.net)
-        ngenes <- dim(dataset)[2] #number of genes in the network
+        ngenes <- dim(datasource)[2] #number of genes in the network
         nlinks <- ngenes^2-ngenes #number of posible links in the network
         if(sym){
             nlinks <- nlinks/2
@@ -62,7 +62,7 @@ experiments.bench <- function(methods="all.fast",datasources.names="all",
         set.seed(l.seed)
         for(i in seq_len(points)){
             m.local <- matrix(0,datasets.num,nmeths+1)
-            rdata <- datasource.subsample(dataset,experiments=experiments[i],
+            rdata <- datasource.subsample(datasource,experiments=experiments[i],
                 datasets.num = datasets.num,local.noise = local.noise,
                 global.noise =global.noise,noiseType=noiseType,
                 samplevar=FALSE)
@@ -126,7 +126,7 @@ experiments.bench <- function(methods="all.fast",datasources.names="all",
         pval[(1:points)+(n-1)*points,2] <- experiments
         pval[(1:points)+(n-1)*points,3:(nmeths+3)] <- pval.table
     }
-    colnames(results) <- c("Dataset","experiments",methods,"rand")
-    colnames(pval) <- c("Dataset","experiments",methods,"rand")
+    colnames(results) <- c("Datasource","experiments",methods,"rand")
+    colnames(pval) <- c("Datasource","experiments",methods,"rand")
     list("results"=results,"pval"=pval,"seed"=seed)
 }
