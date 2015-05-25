@@ -19,7 +19,6 @@ netbenchmark_1.1.4
 netbenchmark_1.1.5
     - Better handling of ties between predictions in evaluation
     - It is possible to specify the ranges of local.noise and global.noise
-    - Bug fix in experiments.bench.R, using the whole datasource
+    - Bug fix in noise.bench.R, using the whole datasource
     - Better summary table in netbenchmark.R
-    - Adding verbose obtion to all the benchmarks
-
+    - Adding verbose option to all the benchmarks
