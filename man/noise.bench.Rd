@@ -12,7 +12,7 @@
 }
 \usage{
     noise.bench(methods = "all.fast", datasources.names = "all",
-        eval = "AUPR", no.topedges = 20,
+        eval = "AUPR", no.topedges = 20,experiments=150,
         datasets.num = 3, local.noise = seq(0, 100, len = 3),
         global.noise = 0, noiseType = "normal", sym = TRUE,
         seed = NULL, verbose = TRUE)
@@ -25,6 +25,9 @@
     \item{eval}{The name of the evaluation metric among the following ones: 
     "no.truepos", "AUROC" or "AUPR" (default : "AUPR") 
     - see \code{\link{evaluate}}.}
+    \item{experiments}{Integer specifying the number of experiments to 
+    generate the subsampled datasets (default: 150) 
+    - see \code{\link{datasource.subsample}}.}
     \item{datasets.num}{Number of repetitions in the noise evaluation, for 
     each method and each dataset and each noise intensity (default: 5).}
     \item{no.topedges}{Float specifying the percentage  number of links to be 

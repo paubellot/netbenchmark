@@ -1,7 +1,8 @@
 noise.bench <- function(methods="all.fast",datasources.names="all",
-    eval="AUPR",no.topedges=20,datasets.num=3,
-    local.noise=seq(0,100,len=3),global.noise=0,noiseType="normal",
-    sym=TRUE,seed=NULL,verbose=TRUE)
+                        experiments=150,eval="AUPR",no.topedges=20,
+                        datasets.num=3,local.noise=seq(0,100,len=3),
+                        global.noise=0,noiseType="normal",
+                        sym=TRUE,seed=NULL,verbose=TRUE)
 {
     options(warn=1)
     Fast <- get("Fast", ntb_globals)
@@ -21,7 +22,7 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
     if(length(datasources.names)==1){
         if (tolower(datasources.names)=="all"){
             datasources.names <- c("rogers1000","syntren1000","syntren300",
-                "gnw1565","gnw2000")
+                                   "gnw1565","gnw2000")
         }else{
             if(tolower(datasources.names)=="toy"){
                 datasources.names <- "toy"
@@ -69,25 +70,37 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
         colnames(tp.local.mat) <- c(methods,"rand")
         l.seed <- eval(parse(text=paste("seeds$",datasources.names[n])))
         set.seed(l.seed)
+        if(is.null(experiments)){
+            spd <- vector(mode = "list",length = datasets.num)
+            for(i in seq_len(datasets.num)){
+                spd[[i]] <- datasource
+            }
+        }else{
+            spd <- datasource.subsample(datasource,experiments=experiments,
+                                        datasets.num = datasets.num,
+                                        local.noise = 0,global.noise = 0)
+        }
         for(i in seq_len(points)){
             m.local <- matrix(0,datasets.num,nmeths+1)
             rdata <- vector('list',datasets.num)
             for(k in seq_len(datasets.num)){
                 if(local.noise[i]!=0){
-                    rdata[[k]] <- apply(datasource,2,.cont,
-                        noise=local.noise[i],noiseType=noiseType)
+                    rdata[[k]] <- apply(spd[[k]],2,.cont,
+                                        noise=local.noise[i],noiseType=noiseType)
                 }else{
-                    rdata[[k]] <- datasource
+                    rdata[[k]] <- spd[[k]]
                 }
                 if(global.noise[i]!=0){
-                    sds <- apply(datasource, 2, sd)
+                    sds <- apply(spd[[k]], 2, sd)
                     if(noiseType=="normal"){
                         Gnoise <- matrix(rnorm(s[1]*s[2],mean=0,
-                            sd=mean(sds)*global.noise[i]/100), s[1], s[2])
+                                               sd=mean(sds)*global.noise[i]/100),
+                                         s[1], s[2])
                     }
                     if(noiseType=="lognormal"){
                         Gnoise <- matrix(rlnorm(s[1]*s[2],meanlog=0,
-                            sdlog=mean(sds)*global.noise[i]/100), s[1], s[2])
+                                                sdlog=mean(sds)*global.noise[i]/100),
+                                         s[1], s[2])
                     }
                     rdata[[k]] <- rdata[[k]]+Gnoise
                 }
@@ -113,7 +126,7 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
             m[i,] <- apply(m.local,2,mean)
             M <- which.max(m[i,])
             precision <- tp.local.mat/matrix(rep(1:no.edges,nmeths+1),
-                no.edges)
+                                             no.edges)
             for(j in seq_len(nmeths)){
                 if(j!=M){
                     aux <- wilcox.test(m.local[,j],m.local[,M])
@@ -129,7 +142,7 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
             r <- evaluate(rand.net,true.net,extend=no.edges,sym=sym)
             tp.local.mat[,nmeths+1] <- r[1:no.edges,"TP"]
             precision <- tp.local.mat/matrix(rep(1:no.edges,nmeths+1),
-                no.edges)
+                                             no.edges)
             if(tolower(eval)=="no.truepos"){
                 m[i,nmeths+1]=mean(r[1:no.edges,"TP"])
             }else if (tolower(eval)== "aupr"){
@@ -142,7 +155,7 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
         }
         rown <- c(rown,rep(datasources.names[n],points))
         results[(1:points)+(n-1)*points,1] <- rep(datasources.names[n],
-            points)
+                                                  points)
         results[(1:points)+(n-1)*points,2] <- local.noise
         results[(1:points)+(n-1)*points,3] <- global.noise
         results[(1:points)+(n-1)*points,4:(nmeths+4)] <- m  
@@ -152,9 +165,9 @@ noise.bench <- function(methods="all.fast",datasources.names="all",
         pval[(1:points)+(n-1)*points,4:(nmeths+4)] <- pval.table
     }
     colnames(results) <- c("Datasource","local.noise","global.noise",
-        methods,"rand")
+                           methods,"rand")
     colnames(pval) <- c("Datasource","local.noise","global.noise",
-        methods,"rand")
+                        methods,"rand")
     list("results"=results,"pval"=pval,"seed"=seed)
 }
 
