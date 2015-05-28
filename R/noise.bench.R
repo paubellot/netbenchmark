@@ -1,8 +1,8 @@
-noise.bench <- function(methods="all.fast",datasources.names="all",
-                        experiments=150,eval="AUPR",no.topedges=20,
-                        datasets.num=3,local.noise=seq(0,100,len=3),
-                        global.noise=0,noiseType="normal",
-                        sym=TRUE,seed=NULL,verbose=TRUE)
+noise.bench <- function(methods = "all.fast", datasources.names = "all", 
+                        eval = "AUPR", no.topedges = 20, experiments = 150,
+                        datasets.num = 3, local.noise = seq(0, 100, len = 3),
+                        global.noise = 0, noiseType = "normal", sym = TRUE,
+                        seed = NULL, verbose = TRUE)
 {
     options(warn=1)
     Fast <- get("Fast", ntb_globals)
