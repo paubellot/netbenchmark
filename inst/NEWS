@@ -22,3 +22,5 @@ netbenchmark_1.1.5
     - Bug fix in noise.bench.R, using the whole datasource
     - Better summary table in netbenchmark.R
     - Adding verbose option to all the benchmarks
+netbenchmark_1.1.6
+    - New web
