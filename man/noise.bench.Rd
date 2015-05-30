@@ -82,6 +82,6 @@
 \seealso{ \code{\link{netbenchmark}}, \code{\link{experiments.bench}}}
 \examples{
     results <- noise.bench(datasources.names="toy",
-    datasets.num=2,methods="all.fast")
+        datasets.num=2,methods="all.fast",experiments=NULL)
 }
 \keyword{ misc }
