@@ -26,6 +26,7 @@ noise.bench <- function(methods = "all.fast", datasources.names = "all",
         }else{
             if(tolower(datasources.names)=="toy"){
                 datasources.names <- "toy"
+                experiments<-NULL
             }
         }
     }
