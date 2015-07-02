@@ -76,7 +76,7 @@ evaluate <- function(inf.net, true.net,sym=TRUE,extend=0)
 }
 
 .Adj2Edgelist <- function(Adjmat){
-    idx <- which(Adjmat> 0, arr.ind=TRUE)
+    idx <- which(Adjmat!=0, arr.ind=TRUE)
     r=idx[,1]; c=idx[,2];
     E <- as.character(rep(0,dim(idx)[1]*3))
     l <- dim(idx)[1]
