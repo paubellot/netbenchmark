@@ -1,6 +1,23 @@
 evaluate <- function(inf.net, true.net,sym=TRUE,extend=0) 
 {
-    ngenes <- dim(true.net)[2]
+    if((diff(dim(inf.net))!=0) && dim(inf.net)[2]==3){
+        ngenes <- max(as.double(inf.net[,1:2]))
+        if((diff(dim(true.net))!=0) && dim(true.net)[2]==3){
+            ngenes <-max(as.double(true.net[,1:2]),ngenes)
+            true.net <- Matrix::sparseMatrix(i=true.net[,1],
+                                             j=true.net[,2],x=true.net[,3],
+                                             dims =c(ngenes,ngenes))
+            true.net<-as.matrix(true.net)
+        }else{
+            ngenes <- dim(true.net)[2]
+        }
+        inf.net <- Matrix::sparseMatrix(i=inf.net[,1],
+                                        j=inf.net[,2],x=inf.net[,3],
+                                        dims =c(ngenes,ngenes))
+        inf.net<-as.matrix(inf.net)
+    }else{
+        ngenes <- dim(true.net)[2]
+    }
     if(sym){
         if(extend>(ngenes*(ngenes+1)/2)){
             extend <- (ngenes*(ngenes+1)/2)
