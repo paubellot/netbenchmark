@@ -97,7 +97,7 @@ aupr <- function(table,k=-1)
     }
 }
 
-.get.pr.plot <- function(m.pr,dataset.name="",...)
+.get.pr.plot <- function(m.pr,datasource.name="",...)
 {
     dev.new() 
     par(mar=c(5.1, 4.1, 4.1, 8.1), xpd=TRUE)
@@ -107,7 +107,7 @@ aupr <- function(table,k=-1)
         if(i==1){
             plot(m.pr$rec[,i],m.pr$pre[,i], xlab="recall",
                 ylab="precision", 
-                main=paste(dataset.name,"PR-Curve"),
+                main=paste(datasource.name,"PR-Curve"),
                 xlim=0:1,ylim=0:1,col=col[i],...)
         }
         points(m.pr$rec[,i],m.pr$pre[,i],col=col[i],...)
