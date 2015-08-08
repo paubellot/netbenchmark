@@ -23,10 +23,9 @@
     coexpression." DNA research 16.5 (2009): 249-260.
 }
 \examples{
-    # Data
-    data <- runif(100)
-    dim(data) <- c(10,10)
+     # Data
+    data <- grndata::getData(datasource.name = "toy",FALSE)
     # Inference
-    net <- mutrank.wrap(as.data.frame(data))
+    net <- mutrank.wrap(data)
 }
 \keyword{ misc }

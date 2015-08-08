@@ -38,9 +38,8 @@ inference algorithm}
 \seealso{ \code{\link{netbenchmark}}, \code{\link{evaluate}}}
 \examples{
     # Data
-    data <- runif(100)
-    dim(data) <- c(10,10)
+    data <- grndata::getData(datasource.name = "toy",FALSE)
     # Inference
-    net <- Genie3.wrap(as.data.frame(data))
+    net <- Genie3.wrap(data)
 }
 \keyword{ misc }

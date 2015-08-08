@@ -36,10 +36,9 @@
     \code{\link{evaluate}}, \code{\link[c3net]{c3net}}
 }
 \examples{
-    # Data
-    data <- runif(100)
-    dim(data) <- c(10,10)
+     # Data
+    data <- grndata::getData(datasource.name = "toy",FALSE)
     # Inference
-    net <- c3net.wrap(as.data.frame(data))
+    net <- c3net.wrap(data)
 }
 \keyword{ misc }

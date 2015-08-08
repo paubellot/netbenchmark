@@ -50,10 +50,9 @@
     \code{\link{evaluate}}, \code{\link[minet]{mrnet}}
 }
 \examples{
-    # Data
-    data <- runif(100)
-    dim(data) <- c(10,10)
+     # Data
+    data <- grndata::getData(datasource.name = "toy",FALSE)
     # Inference
-    net <- mrnet.wrap(as.data.frame(data))
+    net <- mrnet.wrap(data)
 }
 \keyword{ misc }

@@ -40,10 +40,9 @@
     \code{\link[minet]{aracne}}
 }
 \examples{
-    # Data
-    data <- runif(100)
-    dim(data) <- c(10,10)
+     # Data
+    data <- grndata::getData(datasource.name = "toy",FALSE)
     # Inference
-    net <- aracne.wrap(as.data.frame(data))
+    net <- aracne.wrap(data)
 }
 \keyword{ misc }

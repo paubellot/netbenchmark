@@ -41,10 +41,9 @@
 }
 \examples{
     # Data
-    data <- runif(100)
-    dim(data) <- c(10,10)
+    data <- grndata::getData(datasource.name = "toy",FALSE)
     # Inference
-    net <- pcit.wrap(as.data.frame(data))
+    net <- pcit.wrap(data)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

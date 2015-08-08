@@ -36,9 +36,8 @@
 }
 \examples{
     # Data
-    data <- runif(100)
-    dim(data) <- c(10,10)
+    data <- grndata::getData(datasource.name = "toy",FALSE)
     # Inference
-    net <- zscore.wrap(as.data.frame(data))
+    net <- zscore.wrap(data)
 }
 \keyword{ misc }
