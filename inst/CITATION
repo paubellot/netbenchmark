@@ -5,9 +5,9 @@ citEntry(entry = "unpublished",
   author       = "Pau Bellot, Catharina Olsen, Philippe Salembier, Albert Oliveras-Verges and Patrick E. Meyer",
   journal      = "BMC Bioinformatics",
   year         = "2015",
-  note    = "Submitted",
+  note    = "Manuscript accepted in BMC Bioinformatics",
   textVersion  =
   paste("Pau Bellot, Catharina Olsen, Philippe Salembier, Albert Oliveras-Verges and Patrick E. Meyer (2015).",
         "NetBenchmark: A Bioconductor Package for Reproducible Benchmarks of Gene Regulatory Network Inference.",
-        "Submitted.")
+        "Manuscript accepted in BMC Bioinformatics.")
 )
