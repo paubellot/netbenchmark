@@ -10,7 +10,7 @@ citEntry(entry = "Article",
   pages        = "1--15",
   issn         = "1471-2105",
   doi          = "10.1186/s12859-015-0728-4",
-  url          = "http://dx.doi.org/10.1186/s12859-015-0728-4"
+  url          = "http://dx.doi.org/10.1186/s12859-015-0728-4",
   textVersion  =
   paste("Pau Bellot, Catharina Olsen, Philippe Salembier, Albert Oliveras-Verges and Patrick E. Meyer.",
         "NetBenchmark: A Bioconductor Package for Reproducible Benchmarks of Gene Regulatory Network Inference.",
