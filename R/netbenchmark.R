@@ -94,7 +94,7 @@ datasets is bigger than the orginal number of experiments in the datasource:
           g.nets <- vector("list",nmeths)
           names(g.nets) <- methods
           for(j in seq_len(nmeths)){
-            g.nets <- vector("list",length(data.list))
+            g.nets [[j]] <- vector("list",length(data.list))
           }
         }
         for(i in seq_along(data.list)){
