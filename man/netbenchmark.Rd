@@ -34,6 +34,7 @@
     \item{sym}{Logical specifying if the evaluation is symmetric 
     (default: TRUE) - see \code{\link{evaluate}}.}
     \item{plot}{(default: FALSE)}
+    \item{return.nets}{(default: FALSE)}
     \item{seed}{A single value, interpreted as an integer to specify seeds, 
     useful for creating simulations that can be reproduced 
     (default: \code{NULL}) - see \code{\link[base]{set.seed}}.}
