@@ -1,0 +1,22 @@
+Package: netbenchmark
+Type: Package
+Title: Benchmarking of several gene network inference methods
+Version: 1.11.0
+Date: 2015-08-08
+Author: Pau Bellot, Catharina Olsen, Patrick Meyer, with contributions
+        from Alexandre Irrthum
+Maintainer: Pau Bellot <pau.bellot@upc.edu>
+Contact: Pau Bellot <pau.bellot@upc.edu>, Patrick Meyer
+        <Patrick.Meyer@ulg.ac.be>
+Description: This package implements a benchmarking of several gene
+        network inference algorithms from gene expression data.
+License: CC BY-NC-SA 4.0
+URL: https://imatge.upc.edu/netbenchmark/
+Imports: Rcpp (>= 0.11.0), minet, randomForest, c3net, PCIT, GeneNet,
+        tools, pracma, Matrix, corpcor, fdrtool
+LinkingTo: Rcpp
+Depends: grndata (>= 0.99.3)
+Suggests: RUnit, BiocGenerics, knitr, graph
+biocViews: Microarray, GraphAndNetwork, Network, NetworkInference,
+        GeneExpression
+VignetteBuilder: knitr

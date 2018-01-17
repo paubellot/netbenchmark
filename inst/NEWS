@@ -1,0 +1,33 @@
+netbenchmark_1.1.0
+    - First version of the netbenchmark package
+    For a given list of network inference algorithms, \code{netbenchmark} 
+    performs a benchmark between them. It makes use of four different big gene 
+    datasources, it relies on a random subsampling of each one of the 
+    datasource and noise addition in order to generate the datasets. 
+    This package is licensed under a Creative Commons 
+    Attribution-NonCommercial-ShareAlike 4.0 Unported License.
+netbenchmark_1.1.1
+    - Fixing errors in documentation
+    - Adding avaible datasources in documentation
+netbenchmark_1.1.2
+    - Adding routine to easily register wrapper functions
+netbenchmark_1.1.3
+    - Adding routine to easily unregister wrapper functions
+netbenchmark_1.1.4
+    - Adding function to run inference methods to user defined expression data 
+    and its corresponding true regulatory network with \code{netbenchmark.data} 
+netbenchmark_1.1.5
+    - Better handling of ties between predictions in evaluation
+    - It is possible to specify the ranges of local.noise and global.noise
+    - Bug fix in noise.bench.R, using the whole datasource
+    - Better summary table in netbenchmark.R
+    - Adding verbose option to all the benchmarks
+netbenchmark_1.1.6
+    - New web
+netbenchmark_1.1.7
+    - Fixing errors in documentation
+    - Adding avaible datasources in documentation
+    - Fix GeneNet compatibility (1.2.13)
+    - New web
+netbenchmark_1.1.9
+    - Updating citation

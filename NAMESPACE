@@ -1,0 +1,8 @@
+useDynLib(netbenchmark, .registration=TRUE)
+exportPattern("^[^\\.]")
+importFrom(Rcpp, evalCpp)
+importFrom(pracma, trapz)
+importFrom(fdrtool,fdrtool)
+importFrom(corpcor,sm2vec)
+import(grndata)
+import(minet, randomForest, c3net, PCIT, GeneNet, tools, Matrix)
