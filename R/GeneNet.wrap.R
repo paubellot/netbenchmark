@@ -2,7 +2,7 @@ GeneNet.wrap <- function(data){
     # method <- "static"
     # p <- 0.8
     ngenes <- dim(data)[2]
-    pcor <- GeneNet::ggm.estimate.pcor(t(data),
+    pcor <- GeneNet::ggm.estimate.pcor(data,
                                        method ="static",verbose=FALSE)
     C <- fdrtool::fdrtool(corpcor::sm2vec(pcor),plot=FALSE,
                           statistic="correlation",verbose=FALSE)$param
