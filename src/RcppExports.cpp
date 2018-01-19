@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // rate
 NumericMatrix rate(CharacterMatrix PredEdgeList, CharacterMatrix GSEdgeList, int ngenes, int sym);
-RcppExport SEXP netbenchmark_rate(SEXP PredEdgeListSEXP, SEXP GSEdgeListSEXP, SEXP ngenesSEXP, SEXP symSEXP) {
+RcppExport SEXP _netbenchmark_rate(SEXP PredEdgeListSEXP, SEXP GSEdgeListSEXP, SEXP ngenesSEXP, SEXP symSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -21,7 +21,7 @@ END_RCPP
 }
 // zsc
 NumericMatrix zsc(NumericMatrix x);
-RcppExport SEXP netbenchmark_zsc(SEXP xSEXP) {
+RcppExport SEXP _netbenchmark_zsc(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;

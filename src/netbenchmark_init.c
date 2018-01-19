@@ -5,12 +5,12 @@
 
 #include <R_ext/Rdynload.h>
 
-SEXP netbenchmark_rate(SEXP PredEdgeListSEXP, SEXP GSEdgeListSEXP, SEXP ngenesSEXP, SEXP symSEXP);
-SEXP netbenchmark_zsc(SEXP xSEXP);
+SEXP _netbenchmark_rate(SEXP PredEdgeListSEXP, SEXP GSEdgeListSEXP, SEXP ngenesSEXP, SEXP symSEXP);
+SEXP _netbenchmark_zsc(SEXP xSEXP);
 
 R_CallMethodDef callMethods[]  = {
-  {"netbenchmark_rate", (DL_FUNC) &netbenchmark_rate, 4},
-  {"netbenchmark_zsc", (DL_FUNC) &netbenchmark_zsc, 1},
+  {"_netbenchmark_rate", (DL_FUNC) &_netbenchmark_rate, 4},
+  {"_netbenchmark_zsc", (DL_FUNC) &_netbenchmark_zsc, 1},
   {NULL, NULL, 0}
 };
 

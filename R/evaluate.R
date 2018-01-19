@@ -20,7 +20,7 @@ evaluate <- function(inf.net, true.net,sym=TRUE,extend=0)
     }
     if(sym){
         if(extend>(ngenes*(ngenes+1)/2)){
-            extend <- (ngenes*(ngenes+1)/2)
+            extend <- (ngenes*(ngenes-1)/2)
         }
         true.net <- pmax(true.net,t(true.net))
         inf.net <- pmax(inf.net,t(inf.net))
@@ -40,15 +40,21 @@ evaluate <- function(inf.net, true.net,sym=TRUE,extend=0)
         }
         if(sum(inf.net!=0)<extend){
             inv.net <- inf.net*0
-            inv.net[idxInvert(inf.net,which(inf.net!=0))] <- 1
+            inv.net[PCIT::idxInvert(inf.net,which(inf.net!=0))] <- 1
             diag(inv.net) <- 0
             inv.net[lower.tri(inv.net)] <- 0
             E <- .Adj2Edgelist(inv.net)
             idx <- dim(E)[1]
             E <- E[sample(idx),]
             if(sum(inf.net!=0)==0){
+                w <- seq(1,0.01,length.out = extend-sum(inf.net!=0)+1)
+                E <- E[1:(extend-sum(inf.net!=0)+1),]
+                E[,3] <- w
                 PredEdgeList <- E[1:(extend-sum(inf.net!=0)+1),]
             }else{
+                w <- seq(min(inf.net[which(inf.net!=0)])-0.01,0.01,length.out = extend-sum(inf.net!=0))
+                E <- E[1:(extend-sum(inf.net!=0)),]
+                E[,3] <- w
                 PredEdgeList <- rbind(PredEdgeList,
                     E[1:(extend-sum(inf.net!=0)),])
             }
@@ -79,8 +85,14 @@ evaluate <- function(inf.net, true.net,sym=TRUE,extend=0)
             idx <- dim(E)[1]
             E <- E[sample(idx),]
             if(sum(inf.net!=0)==0){
+                w <- seq(1,0.01,length.out = extend-sum(inf.net!=0))
+                E <- E[1:(extend-sum(inf.net!=0)),]
+                E[,3] <- w
                 PredEdgeList <- E[1:(extend-sum(inf.net!=0)),]
             }else{
+                w <- seq(min(inf.net[which(inf.net!=0)])-0.01,0.01,length.out = extend-sum(inf.net!=0))
+                E <- E[1:(extend-sum(inf.net!=0)),]
+                E[,3] <- w
                 PredEdgeList <- rbind(PredEdgeList,
                     E[1:(extend-sum(inf.net!=0)),])
             }

@@ -69,7 +69,11 @@ auroc <- function(table,k=-1)
     }else{
         k <- length(roc$fpr)
     }
-    return(pracma::trapz(roc$fpr[1:k],roc$tpr[1:k]))
+    if(sum(diff(roc$fpr)) == 0){
+      return(max(roc$tpr[1:k]))  
+    }else{
+      return(pracma::trapz(roc$fpr[1:k],roc$tpr[1:k]))
+    }
 }
 
 aupr <- function(table,k=-1)
