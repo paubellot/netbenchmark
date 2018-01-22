@@ -1,6 +1,6 @@
 mrnet.wrap <- function(data){
     # estimator <- "spearman"
-    mim <- build.mim(data,estimator="spearman")
-    net  <- mrnet(mim)
+    mim <- minet::build.mim(data,estimator="spearman")
+    net  <- minet::mrnet(mim)
     return(net);
 }
