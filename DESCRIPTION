@@ -1,7 +1,7 @@
 Package: netbenchmark
 Type: Package
 Title: Benchmarking of several gene network inference methods
-Version: 1.11.2
+Version: 1.20.1
 Date: 2015-08-08
 Author: Pau Bellot, Catharina Olsen, Patrick Meyer
 Maintainer: Pau Bellot <pau.bellot@upc.edu>
