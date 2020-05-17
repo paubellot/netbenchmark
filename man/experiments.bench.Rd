@@ -54,11 +54,10 @@
     (case insensitive) as a parameters:
     \itemize{
         \item "all.fast" performs network inference with "aracne", "c3net", 
-        "clr", "GeneNet", "mutual ranking", "mrnet", "pcit"
+        "clr", "GeneNet", "mutual ranking", "mrnet"
         \item "all" performs network inference with "aracne", "c3net", 
-        "clr", "GeneNet", "Genie3", "mutual ranking", "mrnet", "mrnetb", 
-        "pcit" 
-    } 
+        "clr", "GeneNet", "Genie3", "mutual ranking", "mrnet", "mrnetb"    
+        } 
     It evaluates the first \code{no.topedges} \% of the possible links 
     inferred by each algorithm at each dataset.
 

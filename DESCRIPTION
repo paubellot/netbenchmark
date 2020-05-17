@@ -5,13 +5,13 @@ Version: 1.11.2
 Date: 2015-08-08
 Author: Pau Bellot, Catharina Olsen, Patrick Meyer
 Maintainer: Pau Bellot <pau.bellot@upc.edu>
-Contact: Pau Bellot <pau.bellot@upc.edu>, Patrick Meyer
+Contact: Pau Bellot <pau.bellot@gmail.com>, Patrick Meyer
         <Patrick.Meyer@ulg.ac.be>
 Description: This package implements a benchmarking of several gene
         network inference algorithms from gene expression data.
 License: CC BY-NC-SA 4.0
 URL: https://imatge.upc.edu/netbenchmark/
-Imports: Rcpp (>= 0.11.0), minet, GENIE3, c3net, PCIT, GeneNet,
+Imports: Rcpp (>= 0.11.0), minet, GENIE3, c3net, GeneNet,
         tools, pracma, Matrix, corpcor, fdrtool
 LinkingTo: Rcpp
 Depends: grndata (>= 0.99.3)

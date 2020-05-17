@@ -50,10 +50,10 @@ Benchmarking of several network inference algorithms for your own data
     (case insensitive) as a parameters:
     \itemize{
         \item "all.fast" performs network inference with "aracne", "c3net", 
-        "clr", "GeneNet", "mutual ranking", "mrnet", "pcit" (and registered
+        "clr", "GeneNet", "mutual ranking", "mrnet" (and registered
         methods with \code{\link{RegisterWrapper}}.)
         \item "all" performs network inference with "aracne", "c3net", "clr", 
-        "GeneNet", "Genie3", "mutual ranking", "mrnet", "mrnetb", "pcit" (and 
+        "GeneNet", "Genie3", "mutual ranking", "mrnet", "mrnetb" (and 
         registered methods with \code{\link{RegisterWrapper}}.)
     } 
     All the measures only evaluates the first \code{no.topedges} \% of the 

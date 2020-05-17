@@ -40,7 +40,7 @@ evaluate <- function(inf.net, true.net,sym=TRUE,extend=0)
         }
         if(sum(inf.net!=0)<extend){
             inv.net <- inf.net*0
-            inv.net[PCIT::idxInvert(inf.net,which(inf.net!=0))] <- 1
+            inv.net[.idxInvert(inf.net,which(inf.net!=0))] <- 1
             diag(inv.net) <- 0
             inv.net[lower.tri(inv.net)] <- 0
             E <- .Adj2Edgelist(inv.net)
@@ -123,3 +123,18 @@ evaluate <- function(inf.net, true.net,sym=TRUE,extend=0)
     E[,3] <- as.character(a$x)
     return(E)
 }
+
+.idxInvert <- function(m, idx) {
+  if (class(m)=="numeric" | class(m)=="integer") {
+    nNodes <- m
+  } else {
+    nNodes <- try(nrow(m), silent=TRUE)
+    if (class(nNodes) == "try-error" | is.null(nNodes)) {
+      cat("ERROR: argument 'm' must be a numeric OR an object on which nrow() can be performed.\n\n", geterrmessage())
+      return(FALSE)
+    }
+  }
+  
+  return(setdiff(1:(nNodes^2), idx))
+}
+
